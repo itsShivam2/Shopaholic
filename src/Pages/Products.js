@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Layout from "../Components/Layout";
 import { useEffect } from "react";
-import axios from "axios";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import MyContext from "../Context/Data/MyContext";
@@ -18,7 +17,8 @@ function Products() {
   const cartItems = useSelector((state) => state.cart);
 
   const addCart = (product) => {
-    dispatch(addToCart(product));
+    const defaultQuantity = 1;
+    dispatch(addToCart({ ...product, quantity: defaultQuantity }));
     toast.success("Product added to the cart");
   };
 
@@ -26,52 +26,78 @@ function Products() {
     localStorage.setItem("cart", JSON.stringify(cartItems));
   }, [cartItems]);
 
-  // const [productsList, setProductsList] = useState([]);
-  // useEffect(() => {
-  //   axios
-  //     .get("https://fakestoreapiserver.reactbd.com/products")
-  //     .then((response) => {
-  //       setProductsList(response.data);
-  //       console.log(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }, []);
+  const scrollToTop = () => {
+    const element = document.body;
+    element.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const [currentCategory, setCurrentCategory] = useState("all");
+  const [filteredProducts, setFilteredProducts] = useState(product);
+  useEffect(() => {
+    if (currentCategory === "all") {
+      setFilteredProducts(product);
+    } else {
+      const filtered = product.filter((p) => p.category === currentCategory);
+      console.log("Filtered Products:", filtered);
+      setFilteredProducts(filtered);
+    }
+  }, [currentCategory, product]);
 
   return (
     <div>
       <Layout>
-        <h2 className="text-center text-[#484848] lg:text-[3.6rem] md:text-[2rem] text-[1rem] ">
+        <h1 className="text-6xl sm:text-[6rem] md:text-8xl font-[Fahkwang] text-left md:text-center px-8 pt-8">
           New Arrivals
-        </h2>
-        <p className="text-[#8A8A8A] lg:text-[1.2rem] md:text-[0.7rem] text-[0.5rem] text-center font-normal sm:leading-[1.85rem] leading-normal py-[0.5rem] mb-[2rem]">
+        </h1>
+        <hr className="border-t border-gray-800 mb-6 mx-8" />
+
+        <p className="text-[#8A8A8A] text-xl md:text-xl text-left md:text-center font-[Montserrat] py-[0.5rem] px-8">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque
-          duis <br />
-          ultrices sollicitudin aliquam sem. Scelerisque duis ultrices
+          duis ultrices sollicitudin aliquam sem. Scelerisque duis ultrices
           sollicitudin
         </p>
 
         <ImageGrid />
 
-        <div className="flex flex-col items-center gap-4 mt-[4rem]">
-          <h1 className="text-2xl bg-black text-white py-2 w-80 text-center">
+        <div className="flex flex-col items-center gap-4 mt-4 px-8">
+          <h1 className="text-2xl bg-sky-950 text-white py-3 w-80 text-center font-[Fahkwang]">
             Curated For You!
           </h1>
           <span className="w-20 h-[3px] bg-black"></span>
-          <p className="max-w-[700px] text-[#8A8A8A] lg:text-[1.2rem] md:text-[0.7rem] text-[0.5rem] text-center font-normal sm:leading-[1.85rem] leading-normal py-[0.5rem] mb-[2rem]">
+          <p className="max-w-[700px] text-[#8A8A8A] text-xl md:text-xl text-center font-[Montserrat] py-2 mb-4 ">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque
             duis ultrices sollicitudin aliquam sem. Scelerisque duis ultrices
             sollicitudin
           </p>
         </div>
 
+        <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4 mt-8 mb-10 px-8">
+          <button
+            onClick={() => setCurrentCategory("all")}
+            className="min-w-[265px] sm:min-w-fit font-[Fahkwang] font-bold text-3xl text-white bg-gray-700 hover:bg-sky-950 transform-transition duration-900 transform-transition duration-1000 hover:drop-shadow-lg p-3 rounded-lg"
+          >
+            All
+          </button>
+          <button
+            onClick={() => setCurrentCategory("men's clothing")}
+            className="min-w-[265px] sm:min-w-fit font-[Fahkwang] font-bold text-3xl text-white bg-gray-700 hover:bg-sky-950 transform-transition duration-900 transform-transition duration-1000 hover:drop-shadow-lg p-3 rounded-lg"
+          >
+            Men's Store
+          </button>
+          <button
+            onClick={() => setCurrentCategory("women's clothing")}
+            className="min-w-[265px] sm:min-w-fit font-[Fahkwang] font-bold text-3xl text-white bg-gray-700 hover:bg-sky-950 transform-transition duration-900 transform-transition duration-1000 hover:drop-shadow-lg p-3 rounded-lg"
+          >
+            Women's Store
+          </button>
+        </div>
+
         <div className="bg-white">
           <div className="mx-auto max-w-2xl px-4 py-0 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8 mb-8">
-            <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-              {product.map((product) => (
+            <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+              {filteredProducts.map((product) => (
                 <div key={product.id} className="group">
-                  <Link to={`/productItem/${product.id}`}>
+                  <Link to={`/productItem/${product.id}`} onClick={scrollToTop}>
                     <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none hover:opacity-75 lg:h-80 sm:h-80">
                       <img
                         src={product.imageUrl}
@@ -79,32 +105,31 @@ function Products() {
                         className="h-full w-full object-cover object-center lg:h-full lg:w-full hover:scale-110 duration-500"
                       />
                     </div>
-                    <div className="mt-4 flex justify-between">
+                    <div className="mt-4 flex flex-col sm:flex-row justify-between">
                       <div>
-                        <h3 className="text-sm text-gray-700">
+                        <h3 className="font-[Montserrat] text-sm text-gray-900">
                           <span
                             aria-hidden="true"
                             className="absolute inset-0"
                           />
                           {product.title}
                         </h3>
-                        <p className="mt-1 text-sm text-gray-500">
-                          product.color
+                      </div>
+                      <div className="flex flex-row gap-2 justify-between">
+                        <p className="font-[Montserrat] text-sm font-medium text-gray-900 line-through">
+                          ₹{product.oldPrice}
+                        </p>
+                        <p className="font-[Montserrat] text-sm font-medium text-gray-900">
+                          ₹{product.newPrice}
                         </p>
                       </div>
-                      <p className="text-sm font-medium text-gray-900 line-through">
-                        ₹{product.oldPrice}
-                      </p>
-                      <p className="text-sm font-medium text-gray-900">
-                        ₹{product.newPrice}
-                      </p>
                     </div>
                   </Link>
                   <div className="mt-4 flex justify-center w-full">
                     <button
                       type="button"
                       onClick={() => addCart(product)}
-                      className="flex items-center justify-center w-4/5 py-2 text-white font-medium text-sm rounded-lg cursor-pointer bg-gray-700 hover:bg-sky-950 transform-transition duration-900 hover:w-full transform-transition duration-1000 focus:outline-none hover:drop-shadow-lg"
+                      className="flex items-center justify-center w-4/5 py-3 font-[Fahkwang] text-white font-medium text-sm rounded-lg cursor-pointer bg-gray-700 hover:bg-sky-950 transform-transition duration-900 hover:w-full transform-transition duration-1000 focus:outline-none hover:drop-shadow-lg"
                     >
                       Add To Cart
                       <BsArrowRight />

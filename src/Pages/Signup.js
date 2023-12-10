@@ -21,7 +21,6 @@ function Signup() {
   const { loading, setLoading } = context;
 
   const signup = async () => {
-    // console.log(name, email, password);
     setLoading(true);
     if (
       name === "" ||
@@ -34,8 +33,6 @@ function Signup() {
 
     try {
       const users = await createUserWithEmailAndPassword(auth, email, password);
-
-      // console.log(users);
 
       const user = {
         name: name,
@@ -56,6 +53,10 @@ function Signup() {
       setLoading(false);
     }
   };
+  const scrollToTop = () => {
+    const element = document.body;
+    element.scrollIntoView({ behavior: "smooth" });
+  };
   return (
     <div>
       <Layout>
@@ -63,11 +64,11 @@ function Signup() {
         <div className="relative mx-auto my-8 w-full max-w-md bg-white px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:rounded-xl sm:px-10">
           <div className="w-full">
             <div className="text-center">
-              <h1 className="text-4xl font-bold text-teal-600 px-2 py-2 underline underline-offset-4">
+              <h1 className="text-4xl font-[Fahkwang] font-bold text-teal-600 px-2 py-2 underline underline-offset-4 mb-4">
                 Shopaholic
               </h1>
-              <h2 className="text-3xl font-semibold text-gray-900">Sign up</h2>
-              <p className="mt-2 text-gray-500">Create your account</p>
+              <h2 className="text-3xl font-[Montserrat] font-semibold text-gray-900">Sign up</h2>
+              <p className="font-[Montserrat] mt-2 text-gray-500">Create your account</p>
             </div>
             <div className="mt-5">
               <div>
@@ -86,7 +87,7 @@ function Signup() {
                   />
                   <label
                     htmlFor="name"
-                    className="flex items-center gap-1 pointer-events-none absolute top-0 left-0 origin-left -translate-y-1/2 transform text-sm text-gray-800 opacity-75 transition-all duration-100 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:top-0 peer-focus:pl-0 peer-focus:text-sm peer-focus:text-gray-800"
+                    className="font-[Montserrat] flex items-center gap-1 pointer-events-none absolute top-0 left-0 origin-left -translate-y-1/2 transform text-sm text-gray-800 opacity-75 transition-all duration-100 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:top-0 peer-focus:pl-0 peer-focus:text-sm peer-focus:text-gray-800"
                   >
                     <FaUserCircle />
                     Name
@@ -107,7 +108,7 @@ function Signup() {
                   />
                   <label
                     htmlFor="email"
-                    className="flex items-center gap-1 pointer-events-none absolute top-0 left-0 origin-left -translate-y-1/2 transform text-sm text-gray-800 opacity-75 transition-all duration-100 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:top-0 peer-focus:pl-0 peer-focus:text-sm peer-focus:text-gray-800"
+                    className="font-[Montserrat] flex items-center gap-1 pointer-events-none absolute top-0 left-0 origin-left -translate-y-1/2 transform text-sm text-gray-800 opacity-75 transition-all duration-100 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:top-0 peer-focus:pl-0 peer-focus:text-sm peer-focus:text-gray-800"
                   >
                     <FaEnvelope />
                     Email Address
@@ -127,7 +128,7 @@ function Signup() {
                   />
                   <label
                     htmlFor="password"
-                    className="flex items-center gap-1 pointer-events-none absolute top-0 left-0 origin-left -translate-y-1/2 transform text-sm text-gray-800 opacity-75 transition-all duration-100 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:top-0 peer-focus:pl-0 peer-focus:text-sm peer-focus:text-gray-800"
+                    className="font-[Montserrat] flex items-center gap-1 pointer-events-none absolute top-0 left-0 origin-left -translate-y-1/2 transform text-sm text-gray-800 opacity-75 transition-all duration-100 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:top-0 peer-focus:pl-0 peer-focus:text-sm peer-focus:text-gray-800"
                   >
                     <FaLock />
                     Password
@@ -147,7 +148,7 @@ function Signup() {
                   />
                   <label
                     htmlFor="confirm-password"
-                    className="flex items-center gap-1 pointer-events-none absolute top-0 left-0 origin-left -translate-y-1/2 transform text-sm text-gray-800 opacity-75 transition-all duration-100 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:top-0 peer-focus:pl-0 peer-focus:text-sm peer-focus:text-gray-800"
+                    className="font-[Montserrat] flex items-center gap-1 pointer-events-none absolute top-0 left-0 origin-left -translate-y-1/2 transform text-sm text-gray-800 opacity-75 transition-all duration-100 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:top-0 peer-focus:pl-0 peer-focus:text-sm peer-focus:text-gray-800"
                   >
                     <FaLock />
                     Confirm Password
@@ -157,7 +158,7 @@ function Signup() {
                 <div className="my-6">
                   <button
                     onClick={signup}
-                    className="w-4/5 hover:w-full transform-transition duration-1000 rounded-md bg-black px-3 py-4 text-white focus:bg-gray-600 focus:outline-none hover:drop-shadow-lg"
+                    className="font-[Fahkwang] w-4/5 hover:w-full transform-transition duration-1000 rounded-md bg-black px-3 py-4 text-white focus:bg-gray-600 focus:outline-none hover:drop-shadow-lg"
                   >
                     Sign up
                   </button>
@@ -166,24 +167,25 @@ function Signup() {
                 <div className="flex items-center justify-center">
                   <span className="w-1/5 h-[2px] bg-gray-500"></span>
                   <div className="w-1/5">
-                    <p>OR</p>
+                    <p className="font-[Montserrat]">OR</p>
                     <img src="" />
                   </div>
                   <span className="w-1/5 h-[2px] bg-gray-500"></span>
                 </div>
                 <div className="flex items-center justify-center hover:drop-shadow-lg transform-transition duration-500">
                   <div className="flex items-center justify-center gap-2 my-2 px-3 py-4 text-white bg-black rounded-md w-3/5 hover:w-4/5 transform-transition duration-1000 hover:cursor-pointer">
-                    <span>Sign up with Google</span>
+                    <span className="font-[Fahkwang]">Sign up with Google</span>
                     <i>
                       <FcGoogle />
                     </i>
                   </div>
                 </div>
-                <p className="text-center text-sm text-gray-500">
+                <p className="font-[Montserrat] text-center text-sm text-gray-500">
                   Already have an account?
                   <Link
                     to={"/signin"}
-                    className=" text-gray-600 font-bold hover:text-teal-600 transform-transition duration-500 hover:underline underline-offset-2 focus:text-gray-800 focus:outline-none"
+                    onClick={scrollToTop}
+                    className="font-[Montserrat] text-gray-600 font-bold hover:text-teal-600 transform-transition duration-500 hover:underline underline-offset-2 focus:text-gray-800 focus:outline-none"
                   >
                     Sign in
                   </Link>

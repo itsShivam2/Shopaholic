@@ -51,7 +51,7 @@ function MyState(props) {
     try {
       const productRef = collection(fireDB, "products");
       await addDoc(productRef, products);
-      toast.success("Product added successfully");
+      toast.success("Product Added successfully");
       setTimeout(() => {
         window.location.href = "/admin";
       }, 1000);
@@ -62,6 +62,8 @@ function MyState(props) {
       setLoading(false);
     }
     setProducts("");
+    // setProducts({});
+
   };
 
   const [product, setProduct] = useState([]);
@@ -113,6 +115,8 @@ function MyState(props) {
       console.log(error);
     }
     setProducts("");
+    // setProducts({});
+
   };
 
   const deleteProduct = async (item) => {
@@ -123,7 +127,6 @@ function MyState(props) {
       setLoading(false);
       getProductData();
     } catch (error) {
-      // toast.success('Product Deleted Falied')
       setLoading(false);
     }
   };

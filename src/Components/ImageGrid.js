@@ -8,99 +8,34 @@ import social6 from "../SVG Collection/socials6.591e63e292cac72d6fcc.png";
 import social7 from "../SVG Collection/socials7.9148ef7157490f12f399.png";
 
 const ImageGrid = () => {
+  const images = [
+    social1,
+    social2,
+    social3,
+    social4,
+    social5,
+    social6,
+    social7,
+  ];
+
   return (
-    <div className="grid grid-cols-7 h-full place-content-center place-items-center mt-[2rem] mb-[2rem]">
-      <div
-        className="object-cover w-13.5rem"
-        style={{
-          objectFit: "cover",
-          width: "13.5rem",
-          height: "auto",
-          maxWidth: "100%",
-          display: "block",
-          verticalAlign: "middle",
-        }}
-      >
-        <img src={social1} alt="Odd Image 1" />
-      </div>
-      <div
-        className="object-cover w-13.5rem"
-        style={{
-          objectFit: "cover",
-          width: "13.5rem",
-          height: "auto",
-          maxWidth: "100%",
-          display: "block",
-          verticalAlign: "middle",
-        }}
-      >
-        <img src={social2} alt="Even Image 1" />
-      </div>
-      <div
-        className="object-cover w-13.5rem"
-        style={{
-          objectFit: "cover",
-          width: "13.5rem",
-          height: "auto",
-          maxWidth: "100%",
-          display: "block",
-          verticalAlign: "middle",
-        }}
-      >
-        <img src={social3} alt="Odd Image 2" />
-      </div>
-      <div
-        className="object-cover w-13.5rem"
-        style={{
-          objectFit: "cover",
-          width: "13.5rem",
-          height: "auto",
-          maxWidth: "100%",
-          display: "block",
-          verticalAlign: "middle",
-        }}
-      >
-        <img src={social4} alt="Even Image 2" />
-      </div>
-      <div
-        className="object-cover w-13.5rem"
-        style={{
-          objectFit: "cover",
-          width: "13.5rem",
-          height: "auto",
-          maxWidth: "100%",
-          display: "block",
-          verticalAlign: "middle",
-        }}
-      >
-        <img src={social5} alt="Odd Image 3" />
-      </div>
-      <div
-        className="object-cover w-13.5rem"
-        style={{
-          objectFit: "cover",
-          width: "13.5rem",
-          height: "auto",
-          maxWidth: "100%",
-          display: "block",
-          verticalAlign: "middle",
-        }}
-      >
-        <img src={social6} alt="Even Image 3" />
-      </div>
-      <div
-        className="object-cover w-13.5rem"
-        style={{
-          objectFit: "cover",
-          width: "13.5rem",
-          height: "auto",
-          maxWidth: "100%",
-          display: "block",
-          verticalAlign: "middle",
-        }}
-      >
-        <img src={social7} alt="Odd Image 4" />
-      </div>
+    <div className="grid grid-cols-7 h-full place-content-center place-items-center mt-[2rem] mb-[2rem] p-8">
+      {images.map((src, index) => (
+        <div
+          key={index}
+          className="object-cover w-13.5rem"
+          style={{
+            objectFit: "cover",
+            width: "13.5rem",
+            height: "auto",
+            maxWidth: "100%",
+            display: "block",
+            verticalAlign: "middle",
+          }}
+        >
+          <img src={src} alt={`Image ${index + 1}`} />
+        </div>
+      ))}
     </div>
   );
 };

@@ -3,11 +3,10 @@ import Layout from "../Components/Layout";
 import { FaArrowRight } from "react-icons/fa";
 import MyContext from "../Context/Data/MyContext";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteFromCart } from "../Redux/CartSlice";
+import { deleteFromCart, updateCartItemQuantity } from "../Redux/CartSlice";
 import { toast } from "react-toastify";
 
 function Cart() {
-  //
   const context = useContext(MyContext);
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart);
@@ -17,23 +16,32 @@ function Cart() {
     toast.success("Product deleted from cart");
   };
 
+  const updateQuantity = (item, newQuantity) => {
+    console.log('Before dispatch - item:', item);
+    console.log('Before dispatch - newQuantity:', newQuantity);
+    dispatch(updateCartItemQuantity({ id: item.id, quantity: newQuantity }));
+    console.log('After dispatch - item:', item);
+  };
+
+  
+
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cartItems));
   }, [cartItems]);
 
-  const [totalAmout, setTotalAmount] = useState(0);
+  const [totalAmount, setTotalAmount] = useState(0);
 
   useEffect(() => {
     let temp = 0;
     cartItems.forEach((cartItem) => {
-      temp = temp + parseInt(cartItem.newPrice);
+      temp = temp + parseInt(cartItem.newPrice) * cartItem.quantity;
     });
     setTotalAmount(temp);
   }, [cartItems]);
-  const shipping = parseInt(40);
-  const grandTotal = shipping + totalAmout;
 
-  //
+  const shipping = parseInt(40);
+  const grandTotal = shipping + totalAmount;
+
   return (
     <div>
       <Layout>
@@ -56,17 +64,29 @@ function Cart() {
                     <div className="flex items-center justify-between gap-3 border p-3">
                       <p className="text-sm">Qty</p>
                       <div className="flex items-center justify-center gap-4 text-sm font-semibold">
-                        <button className="border h-6 text-lg font-normal flex items-center justify-center px-3 py-1 hover:bg-gray-600 transform-transition duration-1000 hover:text-white">
+                        <button
+                          onClick={() => {
+                            const newQuantity = Math.max(0, item.quantity - 1);
+                            updateQuantity(item, newQuantity);
+                          }}
+                          className="border h-6 text-lg font-normal flex items-center justify-center px-3 py-1 hover:bg-gray-600 transform-transition duration-1000 hover:text-white"
+                        >
                           -
                         </button>
-                        <span>0</span>
-                        <button className="border h-6 text-lg font-normal flex items-center justify-center px-2 py-1 hover:bg-gray-600 transform-transition duration-1000 hover:text-white">
+                        <span>{item.quantity}</span>
+                        <button
+                          onClick={() => {
+                            const newQuantity = item.quantity + 1;
+                            updateQuantity(item, newQuantity);
+                          }}
+                          className="border h-6 text-lg font-normal flex items-center justify-center px-2 py-1 hover:bg-gray-600 transform-transition duration-1000 hover:text-white"
+                        >
                           +
                         </button>
                       </div>
                     </div>
 
-                    <p className="">₹149</p>
+                    <p className="">₹{item.newPrice * item.quantity}</p>
                   </div>
 
                   <button
@@ -81,7 +101,7 @@ function Cart() {
               );
             })}
           </div>
-          {/* <CartItem /> */}
+         
           <div className="flex flex-col gap-1 bg-[#fafafa] py-2 lg:w-[30%]">
             <div className="flex flex-col">
               <h2 className="text-4xl font-medium self-start mb-4">
@@ -90,7 +110,7 @@ function Cart() {
               <p className="flex items-center gap-4 text-base">
                 Subtotal{" "}
                 <span className="font-titlefont font-bold text-lg">
-                  ₹{totalAmout}
+                  ₹{totalAmount}
                 </span>
               </p>
               <p className="w-full flex item-start gap-4 text-base border-b-2">

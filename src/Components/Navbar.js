@@ -18,7 +18,7 @@ function classNames(...classes) {
 export default function Navbar() {
   // Parse user data from local storage
   const user = JSON.parse(localStorage.getItem("user"));
-  console.log(user);
+  // console.log(user);
 
   const logout = () => {
     localStorage.clear("user");
@@ -26,7 +26,7 @@ export default function Navbar() {
   };
 
   return (
-    <Disclosure as="nav" className="bg-white shadow-lg my-0 py-4 sticky top-0">
+    <Disclosure as="nav" className="bg-white shadow-lg my-0 py-4 sticky">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -51,7 +51,7 @@ export default function Navbar() {
                     src={shopaholic}
                     alt="Your Company"
                   />
-                  <h2 className="text-2xl sm:text-3xl md:text-3xl font-bold">
+                  <h2 className="font-[Fahkwang] text-xl sm:text-3xl md:text-3xl font-semibold">
                     Shopaholic
                   </h2>
                 </Link>
@@ -87,14 +87,14 @@ export default function Navbar() {
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">View notifications</span>
                       {/* <BellIcon className="h-6 w-6" aria-hidden="true" /> */}
-                      <img src={cart} className="h-8 w-8" aria-hidden="true" />
+                      <img src={cart} className="h-7 w-7 sm:h-8 sm:w-8" aria-hidden="true" />
                     </Link>
                   ) : (
                     <Link to="/signin">
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">View notifications</span>
                       {/* <BellIcon className="h-6 w-6" aria-hidden="true" /> */}
-                      <img src={cart} className="h-8 w-8" aria-hidden="true" />
+                      <img src={cart} className="h-7 w-7 sm:h-8 sm:w-8" aria-hidden="true" />
                     </Link>
                   )}
                 </button>
@@ -107,7 +107,7 @@ export default function Navbar() {
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
                       <img
-                        className="h-8 w-8 rounded-full"
+                        className="h-7 w-7 sm:h-8 sm:w-8 rounded-full"
                         src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                         alt=""
                       />

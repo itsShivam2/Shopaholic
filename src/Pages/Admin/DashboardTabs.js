@@ -9,9 +9,7 @@ import { Link } from "react-router-dom";
 function DashboardTab() {
   const context = useContext(MyContext);
   const { product, edithandle, updateProduct, deleteProduct } = context;
-  console.log(product);
 
-  // console.log(product)
   let [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {
@@ -27,45 +25,6 @@ function DashboardTab() {
   };
   return (
     <>
-      <div className="container mx-auto">
-        <div className="tab container mx-auto ">
-          <Tabs defaultIndex={0} className=" ">
-            <TabList className="flex flex-1 flex-col md:flex-row items-center justify-center md:flex md:justify-center md:space-x-8 text-center gap-4 mb-10 ">
-              <Tab>
-                <button
-                  type="button"
-                  className="min-w-[150px] flex justify-center font-medium border-b-2 hover:shadow-purple-700 border-purple-500 bg-[#fafafa] text-purple-500 rounded-lg text-xl shadow-[inset_0_0_8px_rgba(0,0,0,0.6)]  px-5 py-1.5 text-center"
-                >
-                  <div className="flex gap-2 items-center">
-                    <MdOutlineProductionQuantityLimits />
-                    Products
-                  </div>{" "}
-                </button>
-              </Tab>
-              <Tab>
-                <button
-                  type="button"
-                  className="min-w-[150px] flex justify-center font-medium border-b-2 hover:shadow-pink-700  border-pink-500 bg-[#fafafa] text-pink-500 rounded-lg text-xl shadow-[inset_0_0_8px_rgba(0,0,0,0.6)] px-5 py-1.5 text-center "
-                >
-                  <div className="flex gap-2 items-center">
-                    <AiFillShopping /> Order
-                  </div>
-                </button>
-              </Tab>
-              <Tab>
-                <button
-                  type="button"
-                  className="min-w-[150px] flex justify-center font-medium border-b-2 border-green-500 bg-[#fafafa] text-green-500 hover:shadow-green-700 rounded-lg text-xl shadow-[inset_0_0_8px_rgba(0,0,0,0.6)] px-5 py-1.5 text-center "
-                >
-                  <div className="flex gap-2 items-center">
-                    <FaUser /> Users
-                  </div>
-                </button>
-              </Tab>
-            </TabList>
-          </Tabs>
-        </div>
-      </div>
       {/*  */}
       <div className="container mx-auto">
         <div className="tab container mx-auto ">
@@ -156,7 +115,15 @@ function DashboardTab() {
                       </tr>
                     </thead>
                     {product.map((item, index) => {
-                      const { title, oldPrice, newPrice, imageUrl, category, rating, date } = item;
+                      const {
+                        title,
+                        oldPrice,
+                        newPrice,
+                        imageUrl,
+                        category,
+                        rating,
+                        date,
+                      } = item;
                       return (
                         <tbody className="">
                           <tr className="bg-gray-50 border-b  dark:border-gray-700">
@@ -170,19 +137,21 @@ function DashboardTab() {
                               <img className="w-16" src={imageUrl} alt="img" />
                             </th>
                             <td className="px-6 py-4 text-black ">{title}</td>
-                            <td className="px-6 py-4 text-black ">₹{oldPrice}</td>
-                            <td className="px-6 py-4 text-black ">₹{newPrice}</td>
+                            <td className="px-6 py-4 text-black ">
+                              ₹{oldPrice}
+                            </td>
+                            <td className="px-6 py-4 text-black ">
+                              ₹{newPrice}
+                            </td>
                             <td className="px-6 py-4 text-black ">
                               {category}
                             </td>
-                            <td className="px-6 py-4 text-black ">
-                              {rating}
-                            </td>
+                            <td className="px-6 py-4 text-black ">{rating}</td>
                             <td className="px-6 py-4 text-black ">{date}</td>
                             <td className="px-6 py-4">
                               <div className=" flex gap-2">
                                 <div className=" flex gap-2 cursor-pointer text-black ">
-                                  <div onClick={()=>deleteProduct(item)}>
+                                  <div onClick={() => deleteProduct(item)}>
                                     <svg
                                       xmlns="http://www.w3.org/2000/svg"
                                       fill="none"
@@ -198,7 +167,10 @@ function DashboardTab() {
                                       />
                                     </svg>
                                   </div>
-                                  <Link to={"/updateproduct"} onClick={edithandle(item)}>
+                                  <Link
+                                    to={"/updateproduct"}
+                                    onClick={edithandle(item)}
+                                  >
                                     <div>
                                       <svg
                                         xmlns="http://www.w3.org/2000/svg"
