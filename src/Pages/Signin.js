@@ -39,7 +39,7 @@ function Signin() {
     <div>
       <Layout>
         {loading && <Loader />}
-        <div className="relative mx-auto my-8 w-full max-w-md bg-white px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:rounded-xl sm:px-10 -z-10">
+        <div className="relative mx-auto my-8 w-full max-w-md bg-white px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:rounded-xl sm:px-10">
           <div className="w-full">
 
             <div className="text-center">
