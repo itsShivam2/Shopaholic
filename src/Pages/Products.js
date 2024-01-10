@@ -92,7 +92,8 @@ function Products() {
           </button>
         </div>
 
-        <div className="bg-white">
+        {/* original  */}
+        {/* <div className="bg-white">
           <div className="mx-auto max-w-2xl px-4 py-0 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8 mb-8">
             <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
               {filteredProducts.map((product) => (
@@ -138,6 +139,84 @@ function Products() {
                 </div>
               ))}
             </div>
+          </div>
+        </div> */}
+        {/*  */}
+        {/* <div className="mx-auto max-w-2xl px-4 py-0 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8 mb-8">
+          <div className="mt-6 grid grid-cols-1 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+            {filteredProducts.map((product) => (
+              <div key={product.id} className="group">
+                <Link to={`/productItem/${product.id}`} onClick={scrollToTop}>
+                  <img
+                    src={product.imageUrl}
+                    alt={product.title}
+                    className="w-full h-40 object-cover rounded-md bg-gray-200 hover:opacity-75"
+                  />
+                  <div className="mt-4">
+                    <h3 className="text-sm text-gray-900 font-[Montserrat]">
+                      {product.title}
+                    </h3>
+                    <div className="flex flex-row justify-between mt-2">
+                      <p className="text-sm text-gray-900 font-[Montserrat] line-through">
+                        ₹{product.oldPrice}
+                      </p>
+                      <p className="text-sm text-gray-900 font-[Montserrat]">
+                        ₹{product.newPrice}
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+                <div className="mt-4 flex justify-center">
+                  <button
+                    type="button"
+                    onClick={() => addCart(product)}
+                    className="w-4/5 py-3 text-white text-sm bg-gray-700 hover:bg-sky-950 rounded-lg cursor-pointer transform-transition duration-900 hover:w-full transform-transition duration-1000 focus:outline-none hover:drop-shadow-lg"
+                  >
+                    Add To Cart
+                    <BsArrowRight />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div> */}
+        <div className="bg-white mx-auto max-w-2xl px-4 py-0 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8 mb-8">
+          <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+            {filteredProducts.map((product) => (
+              <div key={product.id} className="group">
+                <Link to={`/productItem/${product.id}`} onClick={scrollToTop}>
+                  <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none hover:opacity-75 lg:h-80 sm:h-80">
+                    <img
+                      src={product.imageUrl}
+                      alt={product.title}
+                      className="h-full w-full object-cover object-center lg:h-full lg:w-full hover:scale-110 duration-500"
+                    />
+                  </div>
+                  <div className="mt-4 flex flex-col sm:flex-row justify-between">
+                    <h3 className="font-[Montserrat] text-sm text-gray-900">
+                      {product.title}
+                    </h3>
+                    <div className="flex flex-row gap-2 justify-between">
+                      <p className="font-[Montserrat] text-sm font-medium text-gray-900 line-through">
+                        ₹{product.oldPrice}
+                      </p>
+                      <p className="font-[Montserrat] text-sm font-medium text-gray-900">
+                        ₹{product.newPrice}
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+                <div className="mt-4 flex justify-center w-full">
+                  <button
+                    type="button"
+                    onClick={() => addCart(product)}
+                    className="flex items-center justify-center w-4/5 py-3 font-[Fahkwang] text-white font-medium text-sm rounded-lg cursor-pointer bg-gray-700 hover:bg-sky-950 transform-transition duration-900 hover:w-full transform-transition duration-1000 focus:outline-none hover:drop-shadow-lg"
+                  >
+                    Add To Cart <BsArrowRight />
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </Layout>

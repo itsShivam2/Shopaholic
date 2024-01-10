@@ -3,7 +3,6 @@ import Layout from "../Components/Layout";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import MyContext from "../Context/Data/MyContext";
-import Highlights from "../Components/Highlights";
 import ImageGrid from "../Components/ImageGrid";
 import HomeImageGrid from "../Components/HomeImageGrid";
 import { FaTruck, FaParachuteBox, FaArrowRight } from "react-icons/fa6";
@@ -62,7 +61,6 @@ function Home(props) {
           </div>
         </div>
       </div>
-      {/* <Highlights /> */}
       <div className="flex justify-around gap-8 p-8 my-8">
         <div className="flex flex-col gap-8">
           <div>
@@ -108,47 +106,42 @@ function Home(props) {
         </div>
       </div>
 
-      <div className="bg-white">
-        <div className="mx-auto max-w-2xl px-4 py-0 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8 mb-8">
-          <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-            {featuredProducts.map((product) => (
-              <div key={product.id} className="group">
-                <Link to={`/productItem/${product.id}`} onClick={scrollToTop}>
-                  <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none hover:opacity-75 lg:h-80 sm:h-80">
-                    <img
-                      src={product.imageUrl}
-                      alt={product.title}
-                      className="h-full w-full object-cover object-center lg:h-full lg:w-full hover:scale-110 duration-500"
-                    />
+      <div className="bg-white mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8 mb-8">
+        <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+          {featuredProducts.map((product) => (
+            <div key={product.id} className="group">
+              <Link to={`/productItem/${product.id}`} onClick={scrollToTop}>
+                <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none hover:opacity-75 lg:h-80 sm:h-80">
+                  <img
+                    src={product.imageUrl}
+                    alt={product.title}
+                    className="h-full w-full object-cover object-center lg:h-full lg:w-full hover:scale-110 duration-500"
+                  />
+                </div>
+                <div className="mt-4 flex flex-col sm:flex-row justify-between">
+                  <h3 className="font-[Montserrat] text-sm text-gray-900">
+                    {product.title}
+                  </h3>
+                  <div className="flex gap-2 justify-between">
+                    <p className="font-[Montserrat] text-sm font-medium text-gray-900 line-through">
+                      ₹{product.oldPrice}
+                    </p>
+                    <p className="font-[Montserrat] text-sm font-medium text-gray-900">
+                      ₹{product.newPrice}
+                    </p>
                   </div>
-                  <div className="mt-4 flex flex-col sm:flex-row justify-between">
-                    <div>
-                      <h3 className="font-[Montserrat] text-sm text-gray-900">
-                        <span aria-hidden="true" className="absolute inset-0" />
-                        {product.title}
-                      </h3>
-                    </div>
-                    <div className="flex flex-row gap-2 justify-between">
-                      <p className="font-[Montserrat] text-sm font-medium text-gray-900 line-through">
-                        ₹{product.oldPrice}
-                      </p>
-                      <p className="font-[Montserrat] text-sm font-medium text-gray-900">
-                        ₹{product.newPrice}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="mt-4 flex justify-center w-full">
-                    <button
-                      type="button"
-                      className="flex items-center justify-center w-full py-3 font-[Fahkwang] text-white font-medium text-sm rounded-lg cursor-pointer bg-gray-700 hover:bg-sky-950 transform-transition duration-1000 focus:outline-none hover:drop-shadow-lg"
-                    >
-                      Shop Now
-                    </button>
-                  </div>
-                </Link>
-              </div>
-            ))}
-          </div>
+                </div>
+                <div className="mt-4 flex justify-center w-full">
+                  <button
+                    type="button"
+                    className="flex items-center justify-center w-full py-3 font-[Fahkwang] text-white font-medium text-sm rounded-lg cursor-pointer bg-gray-700 hover:bg-sky-950 transform-transition duration-1000 focus:outline-none hover:drop-shadow-lg"
+                  >
+                    Shop Now
+                  </button>
+                </div>
+              </Link>
+            </div>
+          ))}
         </div>
       </div>
       <div className="w-full flex justify-center p-8 my-8">
@@ -161,9 +154,7 @@ function Home(props) {
           </button>
         </Link>
       </div>
-
       <ImageGrid />
-
       <div className="flex flex-col md:flex-row items-center justify-between gap-8 p-8 my-4">
         <div className="flex flex-col items-center">
           <MdAssuredWorkload className="text-5xl md:text-5xl text-cyan-800" />
@@ -193,7 +184,6 @@ function Home(props) {
           </p>
         </div>
       </div>
-
       <div className="flex flex-col md:flex-row items-start gap-8 md:gap-8 p-8 mt-20 mb-4">
         <div className="flex flex-col gap-2 justify-start text-left">
           <FaParachuteBox className="text-3xl text-cyan-800" />
