@@ -41,7 +41,7 @@ function DashboardTab() {
                   </div>{" "}
                 </button>
               </Tab>
-              <Tab>
+              {/* <Tab>
                 <button
                   type="button"
                   className="min-w-[150px] font-medium border-b-2 border-pink-500 bg-[#605d5d12] text-pink-500  hover:shadow-pink-700  rounded-lg text-xl shadow-[inset_0_0_8px_rgba(0,0,0,0.6)]    px-5 py-1.5 text-center "
@@ -60,7 +60,7 @@ function DashboardTab() {
                     <FaUser /> Users
                   </div>
                 </button>
-              </Tab>
+              </Tab> */}
             </TabList>
             {/* product  */}
             <TabPanel>
@@ -199,8 +199,7 @@ function DashboardTab() {
                 </div>
               </div>
             </TabPanel>
-            <TabPanel>
-              {/* <Order order={order} setOrder={setOrder} setLoading={setLoading} /> */}
+            {/* <TabPanel>
               <div className="relative overflow-x-auto mb-16">
                 <h1 className=" text-center mb-5 text-3xl font-semibold underline">
                   Order Details
@@ -274,7 +273,6 @@ function DashboardTab() {
               </div>
             </TabPanel>
             <TabPanel>
-              {/* <User addressInfo={addressInfo} setAddressInfo={setAddressInfo} setLoading={setLoading} /> */}
               <div className="relative overflow-x-auto mb-10">
                 <h1 className=" text-center mb-5 text-3xl font-semibold underline">
                   User Details
@@ -319,7 +317,7 @@ function DashboardTab() {
                   </tbody>
                 </table>
               </div>
-            </TabPanel>
+            </TabPanel> */}
           </Tabs>
         </div>
       </div>

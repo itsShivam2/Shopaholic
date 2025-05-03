@@ -151,7 +151,7 @@ export default function Navbar() {
                         }
                       </Menu.Item>
                       {/* "Order" link */}
-                      <Menu.Item>
+                      {/* <Menu.Item>
                         {({ active }) =>
                           user ? (
                             <Link
@@ -175,7 +175,7 @@ export default function Navbar() {
                             </Link>
                           )
                         }
-                      </Menu.Item>
+                      </Menu.Item> */}
 
                       {/* "Log In" or "Log Out" link */}
                       <Menu.Item>
